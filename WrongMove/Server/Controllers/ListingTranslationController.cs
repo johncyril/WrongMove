@@ -1,29 +1,31 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace WrongMove.Data
+namespace WrongMove.Server.Controllers
 {
-    public class ListingTranslationService
+    [ApiController]
+    [Route("[controller]")]
+    public class ListingTranslationController : ControllerBase
     {
         private readonly Dictionary<string, string> _dictionary;
-        public ListingTranslationService()
+
+        public ListingTranslationController()
         {
-            using (var reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("WrongMove.Data.dictionary.json")))
+            using (var reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("WrongMove.Server.Controllers.dictionary.json")))
             {
                 var content = reader.ReadToEnd();
                 _dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
             }
-           
-            
         }
 
-        public async Task<string> TranslateListingAsync(Uri listingUri)
+        [HttpPost]
+        public async Task<string> PostAsync([FromBody] Uri listingUri)
         {
             var rawListing = await GetListingAsync(listingUri);
 
@@ -40,7 +42,7 @@ namespace WrongMove.Data
             var response = await client.SendAsync(request);
             return await response.Content.ReadAsStringAsync();
         }
-        
+
         private string UpdateListingBasedOnDictionary(string rawListing)
         {
             foreach (var key in _dictionary.Keys)
