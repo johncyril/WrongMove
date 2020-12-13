@@ -1,4 +1,6 @@
-﻿@using WrongMove.Shared
+﻿@using WrongMove;
+
+
 
 <EditForm Model="@listingUrl" OnValidSubmit="@GetPage">
     <DataAnnotationsValidator />
@@ -12,7 +14,7 @@
 
 @code {
 
-    private Url listingUrl = new Url();
+    private WrongMove.Url listingUrl = new WrongMove.Url();
 
     private void GetPage()
     {
