@@ -4,10 +4,13 @@
 
 <UrlInput OnUrlProvided="UrlHandler" />
 
-
 @if (markedUpContent.Value != null)
 {
     @markedUpContent
+}
+else
+{
+    <Instructions />
 }
 
 @code {
