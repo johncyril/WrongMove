@@ -22,7 +22,7 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             ls
-            docker build WrongMove/ -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
 
         - name: 'Deploy to Azure Container Instances'
