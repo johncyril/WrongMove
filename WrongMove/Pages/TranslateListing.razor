@@ -1,0 +1,32 @@
+﻿
+@using WrongMove.Data
+@inject ListingTranslationService translationService
+
+<UrlInput OnUrlProvided="UrlHandler" />
+
+@if (markedUpContent.Value != null)
+{
+    @markedUpContent
+}
+else
+{
+    <Instructions />
+}
+
+@code {
+
+    private MarkupString markedUpContent;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    async Task UrlHandler(Uri uri)
+    {
+        var translatedContent = await translationService.TranslateListingAsync(uri);
+
+        markedUpContent = new MarkupString(translatedContent);
+    }
+
+}

@@ -1,0 +1,30 @@
+﻿@using WrongMove;
+
+<EditForm Model="@listingUrl" OnValidSubmit="@GetPage">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-inline">
+        <InputText @bind-Value="@listingUrl.Destination" class="flex-fill mr-2 form-control" />
+        <button type="submit" class="btn btn-info">Translate</button>
+    </div>
+    
+</EditForm>
+
+@code {
+
+    private WrongMove.Url listingUrl = new WrongMove.Url();
+
+    private void GetPage()
+    {
+        if (!Uri.IsWellFormedUriString(listingUrl.Destination, UriKind.Absolute))
+        {
+            //error
+        }
+
+        OnUrlProvided.InvokeAsync(new Uri(listingUrl.Destination));
+    }
+
+    [Parameter]
+    public EventCallback<Uri> OnUrlProvided { get; set; }
+
+}
