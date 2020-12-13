@@ -22,6 +22,7 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             cd WrongMove
+            ls
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
 
