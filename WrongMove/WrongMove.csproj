@@ -25,6 +25,9 @@
     <None Update="..\.dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
