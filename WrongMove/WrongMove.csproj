@@ -5,6 +5,8 @@
     <UserSecretsId>5f3a7a73-26d4-4a65-97e6-84c2ff936f62</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <PublishTrimmed>true</PublishTrimmed>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <DockerfileFile>..\Dockerfile</DockerfileFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,12 +22,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="..\.dockerignore">
-      <DependentUpon>dockerfile</DependentUpon>
-    </None>
   </ItemGroup>
 
 </Project>
