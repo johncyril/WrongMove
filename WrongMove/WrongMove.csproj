@@ -4,8 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>5f3a7a73-26d4-4a65-97e6-84c2ff936f62</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <PublishTrimmed>true</PublishTrimmed>
-    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <DockerfileFile>..\Dockerfile</DockerfileFile>
   </PropertyGroup>
 
