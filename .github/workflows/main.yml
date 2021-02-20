@@ -1,10 +1,12 @@
-on: [push]
+on: 
+  push:
+    branches:
+      - master
 name: Linux_Container_Workflow
 
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/master'
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
