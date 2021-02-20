@@ -33,7 +33,7 @@ jobs:
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
             dns-name-label: ${{ secrets.RESOURCE_GROUP }}-wrongmove
-            image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}
+            image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:latest
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
