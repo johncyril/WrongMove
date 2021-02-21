@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'release/*'
 name: Linux_Container_Workflow
 
 jobs:
