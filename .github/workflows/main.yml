@@ -2,8 +2,7 @@ on:
   push:
     branches:
       - 'master'
-      - 'release/*'
-name: Linux_Container_Workflow
+name: Build and deploy to Azure Web App
 
 jobs:
       build-and-deploy:
@@ -11,12 +10,7 @@ jobs:
         steps:
         # checkout the repo
         - name: 'Checkout GitHub Action'
-          uses: actions/checkout@master
-          
-        - name: 'Login via Azure CLI'
-          uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+          uses: actions/checkout@master            
         
         - name: 'Build and push image'
           uses: azure/docker-login@v1
@@ -26,5 +20,12 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             ls
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:latest
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:latest      
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ github.sha }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ github.sha }}      
+            
+        - name: Deploy to Azure Web App
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'wrongmove'
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/wrongmove:${{ github.sha }}
