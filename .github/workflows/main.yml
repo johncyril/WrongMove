@@ -11,6 +11,11 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master            
+          
+        - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
         
         - name: 'Build and push image'
           uses: azure/docker-login@v1
@@ -26,6 +31,5 @@ jobs:
         - name: Deploy to Azure Web App
           uses: azure/webapps-deploy@v2
           with:
-            app-name: 'wrongmove'
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            app-name: 'wrongmove'           
             images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/wrongmove:${{ github.sha }}'
