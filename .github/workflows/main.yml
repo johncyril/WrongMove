@@ -32,4 +32,4 @@ jobs:
           uses: azure/webapps-deploy@v2
           with:
             app-name: 'wrongmove'           
-            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/wrongmove:${{ github.sha }}'
+            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}'
