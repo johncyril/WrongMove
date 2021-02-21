@@ -6,6 +6,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RuntimeIdentifiers>win-x64;linux-musl-x64</RuntimeIdentifiers>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PublishTrimmed>true</PublishTrimmed>
     <DockerfileFile>..\Dockerfile</DockerfileFile>
   </PropertyGroup>
 
@@ -17,6 +18,12 @@
     <EmbeddedResource Include="Data\dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="..\.dockerignore">
+      <DependentUpon>dockerfile</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
