@@ -20,12 +20,12 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             ls
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ github.sha }}      
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:latest
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/wrongmove:${{ github.sha }}      
             
         - name: Deploy to Azure Web App
           uses: azure/webapps-deploy@v2
           with:
             app-name: 'wrongmove'
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/wrongmove:${{ github.sha }}
+            images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}/wrongmove:${{ github.sha }}'
