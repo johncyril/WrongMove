@@ -14,7 +14,7 @@ WORKDIR "/src/WrongMove"
 RUN dotnet build "WrongMove.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish 
+RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish --self-contained false
 
 FROM base AS final
 WORKDIR /app
