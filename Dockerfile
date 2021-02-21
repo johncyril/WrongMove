@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+RUN apk add libc6-compat && \
+    apk add libunwind-dev
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
 WORKDIR /src
@@ -14,7 +16,7 @@ WORKDIR "/src/WrongMove"
 RUN dotnet build "WrongMove.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish 
+RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish --self-contained false
 
 FROM base AS final
 WORKDIR /app
