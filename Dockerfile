@@ -14,7 +14,7 @@ WORKDIR "/src/WrongMove"
 RUN dotnet build "WrongMove.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish --runtime linux-musl-x64 --self-contained false -p:PublishTrimmed=true 
+RUN dotnet publish "WrongMove.csproj" -c Release -o /app/publish 
 
 FROM base AS final
 WORKDIR /app
