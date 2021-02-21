@@ -6,7 +6,6 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RuntimeIdentifiers>win-x64;linux-musl-x64</RuntimeIdentifiers>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <PublishTrimmed>true</PublishTrimmed>
     <DockerfileFile>..\Dockerfile</DockerfileFile>
   </PropertyGroup>
 
