@@ -16,11 +16,6 @@
 
     private void GetPage()
     {
-        if (!Uri.IsWellFormedUriString(listingUrl.Destination, UriKind.Absolute))
-        {
-            //error
-        }
-
         OnUrlProvided.InvokeAsync(new Uri(listingUrl.Destination));
     }
 
